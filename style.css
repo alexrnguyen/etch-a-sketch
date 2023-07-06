@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.grid-container {
+    width: 500px;
+    height: 500px;
+    border: 1px solid;
+}
