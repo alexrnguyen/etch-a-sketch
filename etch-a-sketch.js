@@ -91,10 +91,10 @@ function clearGrid() {
  */
 function changeButtonBackground(button, selected) {
     if (selected) {
-        button.style.backgroundColor = 'yellow';
+        button.style.backgroundColor = 'gold';
     }
     else {
-        button.style.backgroundColor = 'gray';
+        button.style.backgroundColor = 'white';
     }
 }
 
@@ -145,7 +145,11 @@ function main() {
         changeButtonBackground(eraser, eraserSelected);
     });
 
-    clear.addEventListener('click', clearGrid);
+    clear.addEventListener('click', () => {
+        clearGrid();
+        eraserSelected = false;
+        changeButtonBackground(eraser, eraserSelected);
+    });
 
     sizeSlider.oninput = e => {
         gridSize = e.target.value;

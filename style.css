@@ -1,5 +1,21 @@
+* {
+    font-family: 'Space mono', monospace;
+}
+
+body {
+    background-color: red;
+}
+
 h1, h3 {
     text-align: center;
+    color: gold;
+    font-weight: 800;
+}
+
+h1 {
+    font-size: 50px;
+    padding: 30px;
+    margin: 0;
 }
 
 h3 {
@@ -13,12 +29,19 @@ h3 {
     justify-content: space-around;
 }
 
-.rainbow-mode {
-    background-color: gray;
+.colour-picker {
+    width: 100px;
+    height: 100px;
+    padding: 0;
 }
 
-.eraser {
-    background-color: gray;
+button {
+    background-color: white;
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    padding: 8px 32px;
+    border-radius: 10px;
 }
 
 .slider-header {
@@ -28,6 +51,7 @@ h3 {
 .flex {
     display: flex;
     justify-content: center;
+    gap: 100px;
 }
 
 .grid-container {
