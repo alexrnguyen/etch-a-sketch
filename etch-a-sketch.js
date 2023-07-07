@@ -1,13 +1,13 @@
 const GRID_SIDE_LENGTH = 500;
 const MAX_SQUARES_IN_ROW = 100;
 const DEFAULT_SIZE = 16;
+
 /**
- * 
- * @param {*} gridSize 
+ * Create an n x n grid (where n is gridSize)
+ * @param {number} gridSize Width and height of the grid
  */
 function createGrid(gridSize) {
     const grid = document.querySelector(".grid-container");
-    // Create an n x n grid (where n is gridSize)
     for (let i = 0; i < gridSize; i++) {
         const row = document.createElement('div')
         row.classList.add('row')
@@ -24,6 +24,9 @@ function createGrid(gridSize) {
     }
 }
 
+/**
+ * Remove squares from the grid DOM element
+ */
 function removeSquares() {
     const grid = document.querySelector(".grid-container");
     while(grid.firstChild) {
@@ -31,6 +34,11 @@ function removeSquares() {
     }
 }
 
+/**
+ * Create a new grid of the appropriate grid size
+ * @param {number} gridSize Size of new grid
+ * @returns {NodeList} List of all squares in the new grid
+ */
 function resizeGrid(gridSize) {
     clearGrid();
     removeSquares();
@@ -39,11 +47,11 @@ function resizeGrid(gridSize) {
 }
 
 /**
- * 
- * @param {*} square 
- * @param {*} colour 
- * @param {*} eraserSelected 
- * @param {*} rainbowSelected 
+ * Change the colour of a square
+ * @param {Element} square A DOM element representing a square in the grid
+ * @param {string} colour New colour of the square
+ * @param {boolean} eraserSelected True if the eraser is selected, false otherwise
+ * @param {boolean} rainbowSelected True if rainbow mode is selected, false otherwise
  */
 function changeSquare(square, colour, eraserSelected, rainbowSelected) {
     if (eraserSelected) {
@@ -58,8 +66,8 @@ function changeSquare(square, colour, eraserSelected, rainbowSelected) {
 }
 
 /**
- * 
- * @param {*} square 
+ * Randomly choose RGB values to generate a random colour for a square
+ * @param {Element} square A DOM element representing a square in the grid
  */
 function randomizeColour(square) {
     const redValue = Math.floor(Math.random() * 255);
@@ -69,7 +77,7 @@ function randomizeColour(square) {
 }
 
 /**
- * 
+ * Sets all squares to white effectively clearing the grid
  */
 function clearGrid() {
     const squares = document.querySelectorAll('.square');
@@ -77,9 +85,9 @@ function clearGrid() {
 }
 
 /**
- * 
- * @param {*} button 
- * @param {*} selected 
+ * Change the background colour of a button to indicate that it is selected
+ * @param {Element} button A button DOM element
+ * @param {boolean} selected True if the button is currently selected, false otherwise
  */
 function changeButtonBackground(button, selected) {
     if (selected) {
