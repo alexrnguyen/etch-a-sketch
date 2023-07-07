@@ -2,6 +2,14 @@ h1 {
     text-align: center;
 }
 
+.rainbow-mode {
+    background-color: gray;
+}
+
+.eraser {
+    background-color: gray;
+}
+
 .flex {
     display: flex;
     justify-content: center;

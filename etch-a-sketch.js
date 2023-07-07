@@ -20,26 +20,37 @@ function createGrid(gridSize) {
     }
 }
 
-function changeSquare(square, colour, eraserSelected) {
+function changeSquare(square, colour, eraserSelected, rainbowSelected) {
     if (eraserSelected) {
         square.style.backgroundColor = 'white';
+    }
+    else if (rainbowSelected) {
+        randomizeColour(square);
     }
     else {
         square.style.backgroundColor = colour;
     }
 }
 
-function randomizeColour() {
-
-}
-
-function toggleEraser(eraserSelected) {
-    return !eraserSelected;
+function randomizeColour(square) {
+    const redValue = Math.floor(Math.random() * 255);
+    const greenValue = Math.floor(Math.random() * 255);
+    const blueValue = Math.floor(Math.random() * 255);
+    square.style.backgroundColor = `rgb(${redValue}, ${greenValue}, ${blueValue})`;
 }
 
 function clearGrid() {
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => square.style.backgroundColor = 'white');
+}
+
+function changeButtonBackground(button, selected) {
+    if (selected) {
+        button.style.backgroundColor = 'yellow';
+    }
+    else {
+        button.style.backgroundColor = 'gray';
+    }
 }
 
 function main() {
@@ -58,10 +69,11 @@ function main() {
 
     const squares = document.querySelectorAll('.square');
     let eraserSelected = false;
+    let rainbowSelected = false;
     
     squares.forEach(square => {
         square.addEventListener('mouseover', () =>{
-            changeSquare(square, colour, eraserSelected)
+            changeSquare(square, colour, eraserSelected, rainbowSelected)
         });
     });
 
@@ -71,11 +83,13 @@ function main() {
     };
 
     rainbowButton.addEventListener('click', () => {
-        console.log('Rainbow mode clicked!');
+        rainbowSelected = !rainbowSelected;
+        changeButtonBackground(rainbowButton, rainbowSelected);
     });
 
     eraser.addEventListener('click', () => {
-        eraserSelected = toggleEraser(eraserSelected);
+        eraserSelected = !eraserSelected;
+        changeButtonBackground(eraser, eraserSelected);
     });
 
     clear.addEventListener('click', clearGrid);
