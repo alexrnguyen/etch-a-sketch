@@ -20,12 +20,12 @@ function createGrid(gridSize) {
     }
 }
 
-function changeSquare(square, eraserSelected) {
+function changeSquare(square, colour, eraserSelected) {
     if (eraserSelected) {
         square.style.backgroundColor = 'white';
     }
     else {
-        square.style.backgroundColor = 'black';
+        square.style.backgroundColor = colour;
     }
 }
 
@@ -43,9 +43,10 @@ function clearGrid() {
 }
 
 function main() {
-    
-    // Buttons
     const colourPicker = document.querySelector(".colour-picker");
+    let colour = 'black';
+
+    // Buttons
     const rainbowButton = document.querySelector(".rainbow-mode");
     const eraser = document.querySelector(".eraser");
     const clear = document.querySelector(".clear");
@@ -60,13 +61,14 @@ function main() {
     
     squares.forEach(square => {
         square.addEventListener('mouseover', () =>{
-            changeSquare(square, eraserSelected)
+            changeSquare(square, colour, eraserSelected)
         });
     });
 
-    colourPicker.addEventListener('click', () => {
-        console.log('Colour picker clicked!');
-    });
+    colourPicker.onchange =  e => {
+        colour = e.target.value;
+        console.log(colour);
+    };
 
     rainbowButton.addEventListener('click', () => {
         console.log('Rainbow mode clicked!');
@@ -74,7 +76,6 @@ function main() {
 
     eraser.addEventListener('click', () => {
         eraserSelected = toggleEraser(eraserSelected);
-        console.log(eraserSelected);
     });
 
     clear.addEventListener('click', clearGrid);
