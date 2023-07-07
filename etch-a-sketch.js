@@ -1,4 +1,5 @@
 const GRID_SIDE_LENGTH = 500;
+const MAX_SQUARES_IN_ROW = 100;
 
 function createGrid(gridSize) {
     const grid = document.querySelector(".grid-container");
@@ -19,16 +20,21 @@ function createGrid(gridSize) {
     }
 }
 
-function draw() {
-    this.style.backgroundColor = 'black';
+function changeSquare(square, eraserSelected) {
+    if (eraserSelected) {
+        square.style.backgroundColor = 'white';
+    }
+    else {
+        square.style.backgroundColor = 'black';
+    }
 }
 
 function randomizeColour() {
 
 }
 
-function erase() {
-
+function toggleEraser(eraserSelected) {
+    return !eraserSelected;
 }
 
 function clearGrid() {
@@ -50,7 +56,13 @@ function main() {
     createGrid(gridSize);
 
     const squares = document.querySelectorAll('.square');
-    squares.forEach(square => square.addEventListener('mouseover', draw));
+    let eraserSelected = false;
+    
+    squares.forEach(square => {
+        square.addEventListener('mouseover', () =>{
+            changeSquare(square, eraserSelected)
+        });
+    });
 
     colourPicker.addEventListener('click', () => {
         console.log('Colour picker clicked!');
@@ -61,7 +73,8 @@ function main() {
     });
 
     eraser.addEventListener('click', () => {
-        console.log('Eraser clicked!');
+        eraserSelected = toggleEraser(eraserSelected);
+        console.log(eraserSelected);
     });
 
     clear.addEventListener('click', clearGrid);
